@@ -8,6 +8,10 @@ public abstract class Publicacao {
 	private String titulo;
 	private int ano;
 	
+	private PublicacaoState disponivelState;
+	private PublicacaoState requisitadoState;
+	private PublicacaoState atualState;
+	
 	
 	public Publicacao(int isbn, String autor, String editora, String titulo, int ano) 
 	{
@@ -16,6 +20,10 @@ public abstract class Publicacao {
 		this.editora = editora;
 		this.titulo = titulo;
 		this.ano = ano;
+		
+		this.disponivelState = new DisponivelState();
+		this.requisitadoState = new RequisitadoState();
+		this.atualState = new DisponivelState();
 	}
 
 
@@ -67,7 +75,31 @@ public abstract class Publicacao {
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
+	
+	public PublicacaoState getAtualState() {
+		return atualState;
+	}
 
+
+	public void setAtualState(PublicacaoState atualState) {
+		this.atualState = atualState;
+	}
+
+
+	public PublicacaoState getDisponivelState() {
+		return disponivelState;
+	}
+
+
+	public PublicacaoState getRequisitadoState() {
+		return requisitadoState;
+	}
+
+
+	public void requisitarPublicacao()
+	{
+		
+	}
 
 	@Override
 	public String toString() {
