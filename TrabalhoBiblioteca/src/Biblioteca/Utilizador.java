@@ -11,7 +11,6 @@ public abstract class Utilizador
 	 * @param numMaxReq
 	 */
 	public Utilizador(String nome, int numUtilizador) {
-		super();
 		this.nome = nome;
 		this.numUtilizador = numUtilizador;
 

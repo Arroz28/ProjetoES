@@ -5,24 +5,24 @@ import java.util.ArrayList;
 public class GereUtilizador 
 {
 	private ArrayList<Utilizador> utilizadores;
-	private Utilizador user;
-	private UtilizadoresFactory utifac;
+	private Utilizador util;
+	private UtilizadoresFactory utilFac;
 	/**
 	 * @param utilizadores
 	 */
-	public GereUtilizador(UtilizadoresFactory utifac) {
+	public GereUtilizador(UtilizadoresFactory utilFac) {
 		this.utilizadores = new ArrayList<Utilizador>();
-		this.utifac=utifac;
+		this.utilFac = utilFac;
 	}
 	
-	public void addUtilizadorInterno(String nome, int numUtilizador, String tipo, String alunoSN)
+	public void adicionarUtilizadorInterno(String nome, int numUtilizador, String tipo, String alunoSN)
 	{
-		Utilizador utilizador = utifac.criarUtilizadorInterno(nome, numUtilizador, tipo, alunoSN);
+		Utilizador utilizador = utilFac.criarUtilizadorInterno(nome, numUtilizador, tipo, alunoSN);
 		utilizadores.add(utilizador);
 	}
 	 
-	public void AddUtilizadorExterno(String nome, int numUtilizador,  double numCC) {
-		Utilizador utilizador = utifac.criarUtilizadorExterno(nome, numUtilizador, numCC);
+	public void adicionarUtilizadorExterno(String nome, int numUtilizador,  double numCC) {
+		Utilizador utilizador = utilFac.criarUtilizadorExterno(nome, numUtilizador, numCC);
 		utilizadores.add(utilizador);
 	}
 	
@@ -36,11 +36,23 @@ public class GereUtilizador
 		{
 			for(Utilizador u :utilizadores)
 			{
-				if(u.getNumUtilizador()==num)
-				{
-					utilizadores.remove(u); //okok
-				}
+					if(u.getNumUtilizador()==num)
+					{
+						utilizadores.remove(u);
+					}
+			}
+		} 
+	}//fim removeUtil
+	
+	public boolean existeUtilizador(int numUtil)
+	{
+		for(Utilizador u :utilizadores)
+		{
+			if(u.getNumUtilizador()==numUtil)
+			{
+				return true;
 			}
 		}
+		return false;
 	}
-}
+}//fim classe gereUtil
