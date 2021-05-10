@@ -95,10 +95,15 @@ public abstract class Publicacao {
 		return requisitadoState;
 	}
 
-
+	
 	public void requisitarPublicacao()
 	{
-		
+		atualState.requisitarPublicacao(this);
+	}
+	
+	public void devolverPublicacao()
+	{
+		atualState.devolverPublicacao(this);
 	}
 
 	@Override

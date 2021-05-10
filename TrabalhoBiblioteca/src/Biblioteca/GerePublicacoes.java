@@ -79,6 +79,18 @@ public class GerePublicacoes {
 		return p1;
 	}
 	
+	public Publicacao procuraPublicacao(int ISBN)
+	{
+		for(Publicacao p :publicacoes)
+		{
+			if(p.getIsbn()==ISBN)
+			{
+				return p;
+			}
+		}
+		return null;
+	}
+	
 	public ArrayList<Publicacao> procuraEditora(String editora)
 	{
 		ArrayList<Publicacao> p1 = new ArrayList<Publicacao>();

@@ -6,18 +6,20 @@ public class Requisicao
 	private Utilizador utilizador;
 	private double coima;
 	private int periodoEmprestimo;
+	private int codigo;
 	/**
 	 * @param livro
 	 * @param utilizador
 	 * @param coima
 	 * @param periodoEmprestimo
 	 */
-	public Requisicao(Publicacao publicacao, Utilizador utilizador, double coima, int periodoEmprestimo)
+	public Requisicao(Publicacao publicacao, Utilizador utilizador, double coima, int periodoEmprestimo, int codigo)
 	{
 		this.publicacao = publicacao;
 		this.utilizador = utilizador;
-		this.coima = 0;
-		this.periodoEmprestimo = 0;
+		this.coima = coima;
+		this.periodoEmprestimo = periodoEmprestimo;
+		this.codigo=codigo;
 	}
 	/**
 	 * @return the documento
@@ -70,6 +72,12 @@ public class Requisicao
 	 */
 	public void setPeriodoEmprestimo(int periodoEmprestimo) {
 		this.periodoEmprestimo = periodoEmprestimo;
+	}
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	
 	

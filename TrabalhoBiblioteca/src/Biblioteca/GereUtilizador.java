@@ -36,6 +36,8 @@ public class GereUtilizador
 		}
 	}//fim removeUtil
 	
+	
+	
 	public Utilizador existeUtilizador(int numUtil)
 	{
 		if(utilizadores.isEmpty())

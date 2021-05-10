@@ -20,6 +20,7 @@ class teste {
 	PublicacoesFactory pubFac;
 	GereUtilizador gereUtil;
 	GerePublicacoes gerePub;
+	GereRequisicoes gereRequi;
 	
 	
 	@BeforeEach
@@ -30,6 +31,7 @@ class teste {
 		pubFac =  new PublicacoesFactory();
 		gereUtil = new GereUtilizador(utilFac);
 		gerePub = new GerePublicacoes(pubFac);
+		gereRequi = new GereRequisicoes();
 	}
 	
 	
@@ -166,6 +168,35 @@ class teste {
 			
 			gerePub.adicionarPublicacao(tipoPublicacao, isbn, autor, editora, titulo, ano);
 			assertEquals(pTeste.get(0).getIsbn(), gerePub.procuraEditora(editora).get(0).getIsbn());
+	}
+	
+	@ParameterizedTest
+	@CsvSource({"'Livro', 201604342,'Joao', 'Areal', 'As Flores', 2019, 'Andre', 201604342,'Doutoramento', 'Sim', 123", "'Revista', 201604354, 'Miguel', 'Porto Editora', 'Vida sem Cancer', 2020, 'Andre', 201604342,'Doutoramento', 'Sim', 135"})
+	@DisplayName("teste de adicionar requisicao")
+	void testAdicionarRequisicao(String tipoPublicacao, int isbn, String autor, String editora, String titulo, int ano, String nome, int numUtilizador, String tipo, String alunoSN , int codigo)
+	{	
+	
+			gerePub.adicionarPublicacao(tipoPublicacao, isbn, autor, editora, titulo, ano);
+			gereUtil.adicionarUtilizadorInterno(nome, numUtilizador, tipo, alunoSN);
+			
+			gereRequi.adicionarRequisicao(gereUtil.existeUtilizador(numUtilizador), gerePub.procuraPublicacao(isbn), codigo);
+			
+			assertNotNull(gereRequi.procuraRequisicao(codigo));
+	}
+	
+	@ParameterizedTest
+	@CsvSource({"'Livro', 201604342,'Joao', 'Areal', 'As Flores', 2019, 'Andre', 201604342,'Doutoramento', 'Sim', 123, 0.5, 20", "'Revista', 201604354, 'Miguel', 'Porto Editora', 'Vida sem Cancer', 2020, 'Andre', 201604342,'licenciatura', 'Sim', 135, 0.5, 7"})
+	@DisplayName("teste de adicionar requisicao")
+	void testCalculoCoimaEDias(String tipoPublicacao, int isbn, String autor, String editora, String titulo, int ano, String nome, int numUtilizador, String tipo, String alunoSN , int codigo, double coima, int dias)
+	{	
+	
+			gerePub.adicionarPublicacao(tipoPublicacao, isbn, autor, editora, titulo, ano);
+			gereUtil.adicionarUtilizadorInterno(nome, numUtilizador, tipo, alunoSN);
+			
+			gereRequi.adicionarRequisicao(gereUtil.existeUtilizador(numUtilizador), gerePub.procuraPublicacao(isbn), codigo);
+			
+			assertEquals(gereRequi.procuraRequisicao(codigo).getCoima(), coima);
+			assertEquals(gereRequi.procuraRequisicao(codigo).getPeriodoEmprestimo(), dias);
 	}
 	
 }//fim class test
