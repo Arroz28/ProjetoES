@@ -5,13 +5,16 @@ import java.util.ArrayList;
 public class GerePublicacoes {
 
 	private ArrayList<Publicacao> publicacoes;
-
+	private PublicacoesFactory pubfac;
+	
 	public GerePublicacoes() {
 		publicacoes = new ArrayList<Publicacao>();
 	}
 	
-	public void addPublicacao(Publicacao publicacao)
+	public void addPublicacao(String tipoPublicacao, int isbn, String autor, String editora, String titulo, int ano)
 	{
+		Publicacao publicacao = pubfac.criarPublicacao(tipoPublicacao, isbn, autor, editora, titulo, ano);
+		
 		publicacoes.add(publicacao);
 	}
 	
