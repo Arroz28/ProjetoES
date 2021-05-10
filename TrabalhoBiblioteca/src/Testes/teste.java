@@ -199,4 +199,19 @@ class teste {
 			assertEquals(gereRequi.procuraRequisicao(codigo).getPeriodoEmprestimo(), dias);
 	}
 	
+	@ParameterizedTest
+	@CsvSource({"'Livro', 201604342,'Joao', 'Areal', 'As Flores', 2019, 'Andre', 201604342,'Doutoramento', 'Sim', 123", "'Revista', 201604354, 'Miguel', 'Porto Editora', 'Vida sem Cancer', 2020, 'Andre', 201604342,'Doutoramento', 'Sim', 135"})
+	@DisplayName("teste para ver estado da publicacao")
+	void testPublicacaoRequisitada(String tipoPublicacao, int isbn, String autor, String editora, String titulo, int ano, String nome, int numUtilizador, String tipo, String alunoSN , int codigo)
+	{	
+	
+			gerePub.adicionarPublicacao(tipoPublicacao, isbn, autor, editora, titulo, ano);
+			gereUtil.adicionarUtilizadorInterno(nome, numUtilizador, tipo, alunoSN);
+			
+			gerePub.procuraPublicacao(isbn).requisitarPublicacao();	
+			gereRequi.adicionarRequisicao(gereUtil.existeUtilizador(numUtilizador), gerePub.procuraPublicacao(isbn), codigo);
+			
+			assertNull(gereRequi.procuraRequisicao(codigo));
+	}
+	
 }//fim class test
