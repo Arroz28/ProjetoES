@@ -28,31 +28,31 @@ public class GereUtilizador
 	
 	public void removeUtilizador(int num)
 	{
+		Utilizador u = existeUtilizador(num);
+		
+		if(u!=null)
+		{
+			utilizadores.remove(u);
+		}
+	}//fim removeUtil
+	
+	public Utilizador existeUtilizador(int numUtil)
+	{
 		if(utilizadores.isEmpty())
 		{
-			System.out.println("Nao ha utilizadores");
+			System.out.println("Nao ha Utilizadores");
+			return null;
 		}
 		else
 		{
 			for(Utilizador u :utilizadores)
 			{
-					if(u.getNumUtilizador()==num)
-					{
-						utilizadores.remove(u);
-					}
-			}
-		} 
-	}//fim removeUtil
-	
-	public boolean existeUtilizador(int numUtil)
-	{
-		for(Utilizador u :utilizadores)
-		{
-			if(u.getNumUtilizador()==numUtil)
-			{
-				return true;
+				if(u.getNumUtilizador()==numUtil)
+				{
+					return u;
+				}
 			}
 		}
-		return false;
+		return null;
 	}
 }//fim classe gereUtil

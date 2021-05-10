@@ -11,7 +11,6 @@ public abstract class Publicacao {
 	
 	public Publicacao(int isbn, String autor, String editora, String titulo, int ano) 
 	{
-		super();
 		this.isbn = isbn;
 		this.autor = autor;
 		this.editora = editora;
