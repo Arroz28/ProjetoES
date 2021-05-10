@@ -34,7 +34,7 @@ public class GereUtilizador
 			{
 				if(u.getNumUtilizador()==num)
 				{
-					utilizadores.remove(u); //okok
+					utilizadores.remove(u);
 				}
 			}
 		}
